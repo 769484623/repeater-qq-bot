@@ -1,13 +1,18 @@
 import nonebot
 import config
 import asyncio
+import sys
 
 from plugins.auto_repeater import send_exit_msg, send_start_msg
 
 loop = asyncio.get_event_loop()
 
 nonebot.init(config)
+# 复读姬自动复读插件
 nonebot.load_plugin('plugins.auto_repeater')
+
+# 复读姬人品计算器
+nonebot.load_plugin('plugins.today_rp')
 
 # 复读姬上线问候语
 loop.run_until_complete(asyncio.wait([send_start_msg('复读姬援交回来啦~功能正常使用~', [559553404])]))
