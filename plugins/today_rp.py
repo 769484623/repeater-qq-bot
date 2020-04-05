@@ -24,10 +24,10 @@ def flush_cal_time():
 
 
 @on_command('今日人品')
-def _(session: CommandSession):
+async def _(session: CommandSession):
     global today_rp
-    qq_number = session.ctx.user_id
+    qq_number = session.ctx['user_id']
     if qq_number not in today_rp:
         rp = random.randrange(0, 100)
         today_rp[qq_number] = rp
-    session.send(template % today_rp[qq_number], at_sender=True)
+    await session.send(template % today_rp[qq_number], at_sender=True)
