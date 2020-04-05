@@ -22,7 +22,7 @@ async def send_exit_msg(exit_msg, qq_group_list: list = None):
     logging.getLogger('nonebot').info('Bot Exit')
 
 
-@on_command('群消息复读')
+@on_command('group_repeat')
 async def auto_repeater(session: CommandSession):
     if session.ctx['message_type'] == 'group':
         qq_group_id = session.ctx['group_id']
@@ -39,7 +39,7 @@ async def auto_repeater(session: CommandSession):
         last_msg_of_qq_groups[qq_group_id] = {'msg': msg, 'is_repeated': False}
 
 
-@on_command('复读')
+@on_command('repeat', only_to_me=False)
 async def repeater(session: CommandSession):
     await session.send(session.current_arg_text)
 

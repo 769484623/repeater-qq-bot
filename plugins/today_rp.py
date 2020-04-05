@@ -1,8 +1,6 @@
-from nonebot import on_command, CommandSession, get_bot
+from nonebot import on_command, CommandSession
 import random
 from datetime import datetime
-from nonebot import on_natural_language, NLPSession, IntentCommand
-import logging
 
 today_rp = {}
 last_cal_time = datetime.now().date()
@@ -23,7 +21,7 @@ def flush_cal_time():
         today_rp.clear()
 
 
-@on_command('今日人品')
+@on_command('jrrp', only_to_me=False)
 async def _(session: CommandSession):
     global today_rp
     qq_number = session.ctx['user_id']
