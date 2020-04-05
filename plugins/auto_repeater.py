@@ -48,4 +48,4 @@ async def repeater(session: CommandSession):
 @on_natural_language(only_to_me=False)
 async def _(session: NLPSession):
     # 复读机只处理QQ群消息
-    return IntentCommand(90, '群消息复读')
+    return IntentCommand(90, 'group_repeat')
