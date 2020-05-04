@@ -14,7 +14,7 @@ def start_bot():
     # 复读姬上线问候语
     loop.run_until_complete(asyncio.wait([send_start_msg(msg_list[0], [559553404])]))
 
-    nonebot.run(host='0.0.0.0', port=10240)
+    nonebot.run(host=config.HOST, port=config.PORT)
     # 复读姬退出问候语
     loop.run_until_complete(asyncio.wait([send_exit_msg(msg_list[1], [559553404])]))
 
@@ -23,10 +23,9 @@ def start_bot():
 
 def init_bot():
     nonebot.init(config)
-    # 复读姬自动复读插件
-    nonebot.load_plugin('plugins.auto_repeater')
-    # 复读姬人品计算器
-    nonebot.load_plugin('plugins.today_rp')
+    # load plugins
+    for path in config.CUSTOM_PLUGINS:
+        nonebot.load_plugin(path)
 
 
 if __name__ == '__main__':

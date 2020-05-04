@@ -32,10 +32,11 @@ async def repeater(session: CommandSession):
 # 监听所有非命令聊天
 @on_natural_language(only_to_me=False)
 async def _(session: NLPSession):
+    from utils.math import random_win
     # 复读机只处理QQ群消息
+    msg = session.ctx['raw_message']
+    qq_group_id = session.ctx['group_id']
     if session.ctx['message_type'] == 'group':
-        qq_group_id = session.ctx['group_id']
-        msg = session.ctx['raw_message']
         last_msg = last_msg_of_qq_groups.get(qq_group_id)
         if last_msg is not None:
             is_the_msg_the_same = msg == last_msg['msg']
@@ -45,5 +46,8 @@ async def _(session: NLPSession):
                     return IntentCommand(100, 'repeat', current_arg=msg)
                 return IntentCommand(0, 'repeat')
         last_msg_of_qq_groups[qq_group_id] = {'msg': msg, 'is_repeated': False}
-
+    # 随机复读
+    if random_win(0.5):
+        last_msg_of_qq_groups[qq_group_id] = {'msg': msg, 'is_repeated': True}
+        return IntentCommand(100, 'repeat', current_arg=msg)
     return IntentCommand(0, 'repeat')
