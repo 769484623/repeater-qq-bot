@@ -10,7 +10,7 @@ CUSTOM_PLUGINS = [
     # 复读姬自动复读插件
     'plugins.auto_repeater',
     # 复读姬人品计算器
-    'plugins.today_rp'
+    'plugins.today_rp',
     # 母机系统状态
     'plugins.system_status'
 ]

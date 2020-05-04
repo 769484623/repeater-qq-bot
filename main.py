@@ -25,6 +25,7 @@ def init_bot():
     nonebot.init(config)
     # load plugins
     for path in config.CUSTOM_PLUGINS:
+        print(path)
         nonebot.load_plugin(path)
 
 

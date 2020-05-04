@@ -47,7 +47,7 @@ async def _(session: NLPSession):
                 return IntentCommand(0, 'repeat')
         last_msg_of_qq_groups[qq_group_id] = {'msg': msg, 'is_repeated': False}
     # 随机复读
-    if random_win(0.5):
+    if random_win(0.01):
         last_msg_of_qq_groups[qq_group_id] = {'msg': msg, 'is_repeated': True}
         return IntentCommand(100, 'repeat', current_arg=msg)
     return IntentCommand(0, 'repeat')
